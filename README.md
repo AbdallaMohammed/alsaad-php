@@ -13,7 +13,7 @@ This is the PHP client library for use Alsaad2's API. To use this, you'll need a
 To install the PHP client library to your project, we recommend using [Composer](https://getcomposer.org/).
 
 ```
-require_once "vendor/autoload.php";
+composer install abdallahmohammed/alsaad-php
 ```
 
 ## Usage
