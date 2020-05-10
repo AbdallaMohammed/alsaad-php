@@ -1,5 +1,7 @@
 # Client Library For PHP
 
+[![Build Status](https://travis-ci.org/AbdallaMohammed/alsaad-php.svg?branch=master)](https://travis-ci.org/AbdallaMohammed/alsaad-php)
+
 *This library requires a minimum PHP version of 7.1*
 
 This is the PHP client library for use Alsaad2's API. To use this, you'll need a Alsaad2 account.
