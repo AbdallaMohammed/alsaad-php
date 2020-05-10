@@ -222,9 +222,13 @@ class Client
         //allow any part of the URI to be replaced with a simple search
         if (isset($this->options['url'])) {
             foreach ($this->options['url'] as $search => $replace) {
+                if (is_array($replace)) {
+                    continue;
+                }
+
                 $uri = (string) $request->getUri();
 
-                $new = str_replace($search, $replace, $uri);
+                $new = str_replace('@'.$search, $replace, $uri);
                 if ($uri !== $new) {
                     $request = $request->withUri(new Uri($new));
                 }

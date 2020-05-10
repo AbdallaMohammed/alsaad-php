@@ -6,6 +6,7 @@ use Alsaad\Client\ClientAwareInterface;
 use Alsaad\Client\ClientAwareTrait;
 use Alsaad\Client\Exception\RequestException;
 use Zend\Diactoros\Request;
+use Zend\Diactoros\Uri;
 
 class Client implements ClientAwareInterface
 {
@@ -23,18 +24,24 @@ class Client implements ClientAwareInterface
         }
 
         $params = $message->getRequestData();
+        $uri = $this->getClient()->getApiUrl().'sendsms.php?username=@username&password=@password';
 
         $request = new Request(
-            $this->getClient()->getApiUrl() . '/sendsms.php',
+            $uri,
             'POST',
             'php://temp',
             ['content-type' => 'application/json']
         );
 
-        $request->getBody()->write(json_encode($params));
+        foreach ($params as $key => $value) {
+            $uri = $uri.'&'.$key.'='.$value;
+            $request = $request->withUri(new Uri($uri));
+        }
         $message->setRequest($request);
         $response = $this->getClient()->send($request);
         $message->setResponse($response);
+
+        var_dump($uri);
 
         //check for valid data, as well as an error response from the API
         $data = $message->getResponseData();
