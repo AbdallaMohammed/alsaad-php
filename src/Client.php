@@ -217,6 +217,8 @@ class Client
             $this->options['url'] = array_merge($this->options['url'], $this->credentials);
         }
 
+        $this->options = array_merge($this->options, ['return' => 'json']);
+
         //allow any part of the URI to be replaced with a simple search
         if (isset($this->options['url'])) {
             foreach ($this->options['url'] as $search => $replace) {
