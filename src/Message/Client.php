@@ -41,8 +41,6 @@ class Client implements ClientAwareInterface
         $response = $this->getClient()->send($request);
         $message->setResponse($response);
 
-        var_dump($uri);
-
         //check for valid data, as well as an error response from the API
         $data = $message->getResponseData();
         if (\Alsaad\Response\Message::isErrorStatusCode($data)) {
